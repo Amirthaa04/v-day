@@ -16,7 +16,7 @@ body {
     overflow: hidden;
 }
 
-/* Button Screen */
+/* Start screen */
 #startScreen {
     text-align: center;
 }
@@ -43,7 +43,6 @@ body {
     transform: translateY(50px);
 }
 
-/* Show animation */
 .show {
     display: block;
     animation: floatIn 2s forwards;
@@ -64,6 +63,9 @@ h1 {
 .signature {
     margin-top: 20px;
     text-align: right;
+    opacity: 0;
+    display: none;
+    transition: opacity 1.5s ease;
 }
 
 /* Hearts */
@@ -82,20 +84,20 @@ h1 {
 
 <body>
 
-<!-- START BUTTON -->
+<!-- Start Screen -->
 <div id="startScreen">
     <h2>Click to read something special 💖</h2>
     <button id="startBtn">Open Letter 💌</button>
 </div>
 
-<!-- LETTER -->
+<!-- Letter -->
 <div class="letter" id="letterBox">
     <h1>To My Love, Ponmozhi ❤️</h1>
     <p id="text"></p>
-    <div class="signature">Forever yours ❤️</div>
+    <div class="signature" id="signature">Forever yours ❤️</div>
 </div>
 
-<!-- MUSIC -->
+<!-- Music -->
 <audio id="music" src="https://www.bensound.com/bensound-music/bensound-romantic.mp3"></audio>
 
 <script>
@@ -131,17 +133,26 @@ btn.addEventListener("click", () => {
     startHearts();
 });
 
-// TYPEWRITER EFFECT
+// TYPEWRITER
 let i = 0;
+
 function typeWriter() {
     if (i < message.length) {
         textEl.innerHTML += message.charAt(i);
         i++;
         setTimeout(typeWriter, 40);
+    } else {
+        // Show signature after typing
+        const sig = document.getElementById("signature");
+        sig.style.display = "block";
+
+        setTimeout(() => {
+            sig.style.opacity = "1";
+        }, 100);
     }
 }
 
-// FLOATING HEARTS
+// HEARTS
 function startHearts() {
     setInterval(() => {
         const heart = document.createElement("div");
