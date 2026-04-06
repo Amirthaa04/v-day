@@ -204,3 +204,12 @@ h1 {
     width: 260px;
     height: 260px;
 }
+
+button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    font-size: 18px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+}
