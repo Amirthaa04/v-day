@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -49,6 +49,126 @@ Forever yours ❤️
 </div>
 
 </div>
+
+</body>
+</html> -->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Yay! 🎉</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 30px;
+    background: linear-gradient(135deg, #ffe0ec, #fff0f5);
+    font-family: Georgia, serif;
+    overflow: hidden;
+}
+
+/* LETTER BOX */
+.letter {
+    max-width: 700px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+
+    /* Animation */
+    opacity: 0;
+    transform: translateY(50px);
+    animation: floatIn 2s ease forwards;
+}
+
+/* Heading */
+h1 {
+    text-align: center;
+    color: #ff4d6d;
+}
+
+/* Signature */
+.signature {
+    margin-top: 30px;
+    text-align: right;
+}
+
+/* FLOAT IN ANIMATION */
+@keyframes floatIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* FLOATING HEARTS */
+.heart {
+    position: absolute;
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(100vh);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="letter">
+<h1>To My Love, Ponmozhi ❤️</h1>
+
+<p>
+From the moment you came into my life,
+everything started to feel… right.
+
+Your smile, your voice, the way you exist —
+it all became my favorite part of every day.
+
+I don’t know what I did to deserve you,
+but I promise… I’ll never take you for granted.
+
+Through every laugh, every fight,
+every ordinary day — I choose you.
+
+Always.
+
+I love you, Ponmozhi ❤️
+</p>
+
+<div class="signature">
+Forever yours ❤️
+</div>
+</div>
+
+<script>
+// Floating hearts effect
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.innerHTML = "❤️";
+    heart.classList.add("heart");
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+}, 300);
+</script>
 
 </body>
 </html>
