@@ -2,45 +2,53 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Yay! 🎉</title>
+<title>For Ponmozhi ❤️</title>
 
 <style>
 body {
     margin: 0;
-    padding: 30px;
+    height: 100vh;
     background: linear-gradient(135deg, #ffe0ec, #fff0f5);
     font-family: Georgia, serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
 }
 
-/* LETTER BOX */
+/* Button Screen */
+#startScreen {
+    text-align: center;
+}
+
+#startBtn {
+    padding: 15px 30px;
+    font-size: 20px;
+    border-radius: 30px;
+    border: none;
+    background: #ff4d6d;
+    color: white;
+    cursor: pointer;
+}
+
+/* Letter */
 .letter {
+    display: none;
     max-width: 700px;
-    margin: auto;
     background: white;
     padding: 25px;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-
-    /* Animation */
     opacity: 0;
     transform: translateY(50px);
-    animation: floatIn 2s ease forwards;
 }
 
-/* Heading */
-h1 {
-    text-align: center;
-    color: #ff4d6d;
+/* Show animation */
+.show {
+    display: block;
+    animation: floatIn 2s forwards;
 }
 
-/* Signature */
-.signature {
-    margin-top: 30px;
-    text-align: right;
-}
-
-/* FLOAT IN ANIMATION */
 @keyframes floatIn {
     to {
         opacity: 1;
@@ -48,7 +56,17 @@ h1 {
     }
 }
 
-/* FLOATING HEARTS */
+h1 {
+    text-align: center;
+    color: #ff4d6d;
+}
+
+.signature {
+    margin-top: 20px;
+    text-align: right;
+}
+
+/* Hearts */
 .heart {
     position: absolute;
     font-size: 20px;
@@ -56,24 +74,37 @@ h1 {
 }
 
 @keyframes floatUp {
-    from {
-        transform: translateY(100vh);
-        opacity: 1;
-    }
-    to {
-        transform: translateY(-10vh);
-        opacity: 0;
-    }
+    from { transform: translateY(100vh); opacity: 1; }
+    to { transform: translateY(-10vh); opacity: 0; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="letter">
-<h1>To My Love, Ponmozhi ❤️</h1>
+<!-- START BUTTON -->
+<div id="startScreen">
+    <h2>Click to read something special 💖</h2>
+    <button id="startBtn">Open Letter 💌</button>
+</div>
 
-<p>
+<!-- LETTER -->
+<div class="letter" id="letterBox">
+    <h1>To My Love, Ponmozhi ❤️</h1>
+    <p id="text"></p>
+    <div class="signature">Forever yours ❤️</div>
+</div>
+
+<!-- MUSIC -->
+<audio id="music" src="https://www.bensound.com/bensound-music/bensound-romantic.mp3"></audio>
+
+<script>
+const btn = document.getElementById("startBtn");
+const letter = document.getElementById("letterBox");
+const textEl = document.getElementById("text");
+const music = document.getElementById("music");
+
+const message = `
 From the moment you came into my life,
 everything started to feel… right.
 
@@ -89,27 +120,42 @@ every ordinary day — I choose you.
 Always.
 
 I love you, Ponmozhi ❤️
-</p>
+`;
 
-<div class="signature">
-Forever yours ❤️
-</div>
-</div>
+btn.addEventListener("click", () => {
+    document.getElementById("startScreen").style.display = "none";
+    letter.classList.add("show");
 
-<script>
-// Floating hearts effect
-setInterval(() => {
-    const heart = document.createElement("div");
-    heart.innerHTML = "❤️";
-    heart.classList.add("heart");
+    music.play();
+    typeWriter();
+    startHearts();
+});
 
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+// TYPEWRITER EFFECT
+let i = 0;
+function typeWriter() {
+    if (i < message.length) {
+        textEl.innerHTML += message.charAt(i);
+        i++;
+        setTimeout(typeWriter, 40);
+    }
+}
 
-    document.body.appendChild(heart);
+// FLOATING HEARTS
+function startHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.classList.add("heart");
 
-    setTimeout(() => heart.remove(), 6000);
-}, 300);
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 6000);
+    }, 300);
+}
 </script>
 
 </body>
